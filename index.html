@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Le Dang Gia Khanh - Data Analyst & AI Researcher. Specializing in Python, SQL, and Machine Learning.">
+    <meta name="author" content="Le Dang Gia Khanh">
+    <title>Le Dang Gia Khanh | Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'], 
+                    },
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669', 
+                            900: '#064e3b',
+                        },
+                        dark: {
+                            bg: '#0f172a', 
+                            card: '#1e293b', 
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'typewriter': 'blink 1s step-end infinite'
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        blink: {
+                            '50%': { opacity: '0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Utilities */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Background Grid Pattern */
+        .bg-grid-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .dark .bg-grid-pattern {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-dark-bg dark:text-slate-200 font-sans transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+
+    <!-- BACKGROUND ACCENTS -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-200 dark:bg-emerald-900/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-200 dark:bg-purple-900/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.4]"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="font-heading font-bold text-2xl tracking-tight flex items-center gap-2">
+                    <span class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white text-sm">GK</span>
+                    <span class="text-slate-900 dark:text-white">GiaKhanh<span class="text-emerald-500">.AI</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Home</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Skills</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Projects</a>
+                    <a href="#achievements" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Awards</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-all shadow-lg shadow-emerald-500/30">Hire Me</a>
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <i class="fas fa-moon text-slate-600 dark:text-emerald-400" id="theme-icon"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 dark:text-slate-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-card border-t border-slate-100 dark:border-slate-800">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#home" class="block py-2 text-base font-medium hover:text-emerald-500">Home</a>
+                <a href="#skills" class="block py-2 text-base font-medium hover:text-emerald-500">Skills</a>
+                <a href="#projects" class="block py-2 text-base font-medium hover:text-emerald-500">Projects</a>
+                <a href="#achievements" class="block py-2 text-base font-medium hover:text-emerald-500">Awards</a>
+                <a href="#contact" class="block py-2 text-base font-medium text-emerald-600 font-bold">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col-reverse lg:flex-row items-center gap-12">
+            <!-- Text Content -->
+            <div class="lg:w-1/2 text-center lg:text-left reveal active">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-6 border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Open for Internship
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-3 leading-tight text-slate-900 dark:text-white">
+                    Hi, I'm <span class="text-gradient">Gia Khanh</span>
+                </h1>
+                <h2 class="text-2xl sm:text-3xl font-medium text-slate-700 dark:text-slate-300 mb-6">
+                    Aspiring <span class="text-emerald-600 dark:text-emerald-400 font-bold">Data Analyst Intern</span>
+                </h2>
+                
+                <p class="text-slate-600 dark:text-slate-400 mb-8 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    I’m a Data Science student passionate about turning data into actionable insights. With solid skills in data analysis and visualization, I’m eager to apply my knowledge to real business problems and grow as a Data Analyst in a collaborative, data-driven environment. I believe that clear data storytelling bridges the gap between information and impact.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#projects" class="px-8 py-3.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:bg-emerald-600 dark:hover:bg-emerald-400 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl">
+                        View My Work
+                    </a>
+                    <a href="https://github.com/ldgk2712" target="_blank" class="px-8 py-3.5 rounded-full border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 font-semibold transition-all flex items-center justify-center gap-2 group">
+                        <i class="fab fa-github text-xl group-hover:text-emerald-500"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual -->
+            <div class="lg:w-1/2 relative reveal delay-200">
+                <div class="relative w-72 sm:w-80 mx-auto">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-blue-500 rounded-full opacity-20 blur-2xl animate-pulse"></div>
+                    <!-- Image Container (Aspect Ratio 10:12 = 5:6) -->
+                    <div class="relative w-full aspect-[5/6] rounded-3xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 cursor-pointer group">
+                        <img src="https://lh3.googleusercontent.com/d/1v_uWkIudwhqBsMqfm71VlH2tKqb6MR3h" 
+                             alt="Le Dang Gia Khanh" 
+                             class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-20 bg-white dark:bg-dark-card/50 border-y border-slate-100 dark:border-slate-800/50 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-heading font-bold mb-4">Technical <span class="text-gradient">Skillset</span></h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">The tools I use to transform data into insights that drive decisions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="group relative reveal">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative h-full bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 flex flex-col">
+                        <div class="w-14 h-14 bg-slate-900/5 dark:bg-white/5 rounded-xl flex items-center justify-center mb-6 border border-slate-200 dark:border-slate-700">
+                            <i class="fas fa-code text-2xl text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold mb-4 text-slate-900 dark:text-white">Programming</h3>
+                        <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                            <li>
+                                <strong class="block text-blue-600 dark:text-blue-400 mb-1">Core Libraries</strong>
+                                Pandas • NumPy • Seaborn • Matplotlib • Scikit-learn (basic)
+                            </li>
+                            <li>
+                                <strong class="block text-blue-600 dark:text-blue-400 mb-1">SQL</strong>
+                                PostgreSQL, MySQL, SQL Server, NoSQL (MongoDB)
+                            </li>
+                            <li>
+                                <strong class="block text-blue-600 dark:text-blue-400 mb-1">Others</strong>
+                                R Language, C/C++
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group relative reveal delay-100">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-600 to-green-400 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative h-full bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 flex flex-col">
+                        <div class="w-14 h-14 bg-slate-900/5 dark:bg-white/5 rounded-xl flex items-center justify-center mb-6 border border-slate-200 dark:border-slate-700">
+                            <i class="fas fa-brain text-2xl text-emerald-500 drop-shadow-[0_0_10px_rgba(16,185,129,0.6)]"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold mb-4 text-slate-900 dark:text-white">Data Science</h3>
+                        <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                            <li>
+                                <strong class="block text-emerald-600 dark:text-emerald-400 mb-1">Analytics</strong>
+                                Descriptive • Diagnostic • Predictive Analytics
+                            </li>
+                            <li>
+                                <strong class="block text-emerald-600 dark:text-emerald-400 mb-1">ML & Deep Learning</strong>
+                                Proficient with core ML/DL models, especially for <span class="text-slate-900 dark:text-white font-semibold">time-series forecasting</span>
+                            </li>
+                            <li>
+                                <strong class="block text-emerald-600 dark:text-emerald-400 mb-1">Data Cleaning & ETL</strong>
+                                Feature Engineering • Data Pipelines
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group relative reveal delay-200">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative h-full bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 flex flex-col">
+                        <div class="w-14 h-14 bg-slate-900/5 dark:bg-white/5 rounded-xl flex items-center justify-center mb-6 border border-slate-200 dark:border-slate-700">
+                            <i class="fas fa-chart-pie text-2xl text-orange-500 drop-shadow-[0_0_10px_rgba(249,115,22,0.6)]"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold mb-4 text-slate-900 dark:text-white">Visualization & Tools</h3>
+                        <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                            <li>
+                                <strong class="block text-orange-500 dark:text-orange-400 mb-1">BI & Visualization</strong>
+                                Power BI • Tableau • Matplotlib • Seaborn
+                            </li>
+                            <li>
+                                <strong class="block text-orange-500 dark:text-orange-400 mb-1">Reporting Tools</strong>
+                                PowerPoint • Canva
+                            </li>
+                            <li>
+                                <strong class="block text-orange-500 dark:text-orange-400 mb-1">Tools</strong>
+                                Git/GitHub • Excel (Advanced)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight Line -->
+            <div class="mt-12 text-center reveal">
+                <p class="inline-block px-6 py-2 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-medium shadow-sm">
+                    <i class="fas fa-star text-yellow-500 mr-2 animate-pulse"></i>
+                    Strong foundation in <span class="text-emerald-600 dark:text-emerald-400 font-bold">end-to-end analytics workflow</span>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+            <div>
+                <h2 class="text-3xl font-heading font-bold mb-2">Featured <span class="text-gradient">Projects</span></h2>
+                <p class="text-slate-500">Real-world problems solved with data.</p>
+            </div>
+            <a href="https://github.com/ldgk2712" target="_blank" class="hidden md:inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold transition-colors mt-4 md:mt-0">
+                View GitHub <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            
+            <!-- Project 1 -->
+            <div class="group relative h-[500px] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" 
+                     alt="Sales Dashboard" 
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90 group-hover:opacity-0 transition-opacity duration-500"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full transition-all duration-500 group-hover:translate-y-4 group-hover:opacity-0">
+                    <p class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">Business Intelligence</p>
+                    <h3 class="text-3xl font-heading font-bold text-white">Sales Performance Dashboard</h3>
+                </div>
+                <div class="absolute bottom-0 left-0 w-full bg-slate-900/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-white/10 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] flex flex-col min-h-[80%]">
+                    <div class="mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Sales Performance</h3>
+                            <div class="flex gap-2 text-xs mt-2">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-yellow-400 border border-yellow-500/30">Power BI</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-blue-400 border border-blue-500/30">Advanced DAX</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-emerald-400 border border-emerald-500/30">Data Viz</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-400 text-right">
+                            <p>Dec 2024</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-question-circle mr-1"></i> Problem</p>
+                            <p class="text-slate-200 text-xs leading-snug">Lack of real-time visibility into revenue, profit & growth drivers.</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-bullseye mr-1"></i> Target</p>
+                            <p class="text-slate-200 text-xs leading-snug">Sales Managers & Executives.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm flex-grow">
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">✔ Solution (What I did)</p>
+                            <ul class="text-slate-300 space-y-1 list-disc list-inside marker:text-emerald-500 text-xs sm:text-sm">
+                                <li>Created dynamic KPIs using <span class="font-semibold text-white">DAX</span> (CALCULATE, PREVIOUSMONTH).</li>
+                                <li>Implemented flexible slicing by product & payment type.</li>
+                                <li>Designed interactive viz (Combo charts, Trends, MoM metrics).</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">🚀 Impact</p>
+                            <p class="text-white font-medium text-xs sm:text-sm">
+                                Delivered clear insights on business health, enabling faster decisions & <span class="text-emerald-400 font-bold">30% efficiency increase</span>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiOWZjMzNmZGUtMDNlMC00YTFkLTgyZjMtZjZhODFkNmEzYTVjIiwidCI6ImJlODMyOWE3LTcyMTgtNDlhMy05YWMxLWQ3Yjk1NDU2M2YzOSIsImMiOjEwfQ%3D%3D&pageName=28c48b7a212d9b9c313f" target="_blank" class="inline-flex items-center gap-2 text-white font-semibold hover:text-emerald-400 transition-colors group/btn text-sm">
+                            View Live Dashboard <i class="fas fa-external-link-alt transform group-hover/btn:translate-x-1 transition-transform ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Error Analysis (Updated Image) -->
+            <div class="group relative h-[500px] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal delay-100">
+                <!-- NEW IMAGE HERE -->
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" 
+                     alt="Error Analysis" 
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90 group-hover:opacity-0 transition-opacity duration-500"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full transition-all duration-500 group-hover:translate-y-4 group-hover:opacity-0">
+                    <p class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">Product Analytics</p>
+                    <h3 class="text-3xl font-heading font-bold text-white">Error Analysis in Product Report</h3>
+                </div>
+                <div class="absolute bottom-0 left-0 w-full bg-slate-900/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-white/10 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] flex flex-col min-h-[80%]">
+                    <div class="mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Error Analysis</h3>
+                            <div class="flex gap-2 text-xs mt-2">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-yellow-400 border border-yellow-500/30">Power BI</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-blue-400 border border-blue-500/30">Python</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-purple-400 border border-purple-500/30">MECE</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-400 text-right">
+                            <p>Nov 2024</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-question-circle mr-1"></i> Problem</p>
+                            <p class="text-slate-200 text-xs leading-snug">Decline in bill payment success rate on e-wallet since Aug 2023.</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-bullseye mr-1"></i> Target</p>
+                            <p class="text-slate-200 text-xs leading-snug">Product & Engineering Teams.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm flex-grow">
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">✔ Solution (What I did)</p>
+                            <ul class="text-slate-300 space-y-1 list-disc list-inside marker:text-emerald-500 text-xs sm:text-sm">
+                                <li>Cleaned & integrated transactions, logs, and error datasets.</li>
+                                <li>Analyzed payment bottlenecks using <span class="font-semibold text-white">MECE</span> breakdown.</li>
+                                <li>Conducted funnel analysis on user behavior drop-offs.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">🚀 Impact</p>
+                            <p class="text-white font-medium text-xs sm:text-sm">
+                                Identified <span class="text-emerald-400 font-bold">~22% drop-off</span> at Auth step & specific OS failures. Proposed FaceID & timeout optimization.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="https://www.canva.com/design/DAGwNB1W1Y0/2mOM_wEB7zmKeE9whbzvPA/view?utm_content=DAGwNB1W1Y0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h41e7144eaf" target="_blank" class="inline-flex items-center gap-2 text-white font-semibold hover:text-emerald-400 transition-colors group/btn text-sm">
+                            View Report <i class="fas fa-arrow-right transform group-hover/btn:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="group relative h-[500px] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal delay-200">
+                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1332&q=80" 
+                     alt="Cluster Visualization" 
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90 group-hover:opacity-0 transition-opacity duration-500"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full transition-all duration-500 group-hover:translate-y-4 group-hover:opacity-0">
+                    <p class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">Unsupervised Learning</p>
+                    <h3 class="text-3xl font-heading font-bold text-white">E-Commerce Segmentation</h3>
+                </div>
+                <div class="absolute bottom-0 left-0 w-full bg-slate-900/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-white/10 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] flex flex-col min-h-[80%]">
+                    <div class="mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Customer Segmentation</h3>
+                            <div class="flex gap-2 text-xs mt-2">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-orange-400 border border-orange-500/30">PCA</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-purple-400 border border-purple-500/30">K-Means</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-blue-400 border border-blue-500/30">Python</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-400 text-right">
+                            <p>Sep 2024</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-question-circle mr-1"></i> Problem</p>
+                            <p class="text-slate-200 text-xs leading-snug">Inefficiency in "one-size-fits-all" marketing across 540k+ transactions.</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-bullseye mr-1"></i> Target</p>
+                            <p class="text-slate-200 text-xs leading-snug">Marketing Managers & Strategy Team.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm flex-grow">
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">✔ Solution (What I did)</p>
+                            <ul class="text-slate-300 space-y-1 list-disc list-inside marker:text-emerald-500 text-xs sm:text-sm">
+                                <li>Cleaned 541k+ records; handled outliers via <span class="font-semibold text-white">Isolation Forest</span>.</li>
+                                <li>Engineered features (RFM, Seasonality) & applied <span class="font-semibold text-white">PCA</span>.</li>
+                                <li>Segmented users using K-Means Clustering.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">🚀 Impact</p>
+                            <p class="text-white font-medium text-xs sm:text-sm">
+                                Identified "High Spenders at Risk" (Cluster 0) & proposed VIP/Weekend promos to optimize <span class="text-emerald-400 font-bold">ROI & CLV</span>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="https://github.com/ldgk2712/E-Commerce-Customer-Segmentation" target="_blank" class="inline-flex items-center gap-2 text-white font-semibold hover:text-emerald-400 transition-colors group/btn text-sm">
+                            View Case Study <i class="fas fa-arrow-right transform group-hover/btn:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="group relative h-[500px] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal delay-300">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1174&q=80" 
+                     alt="Vietnam Exam Analysis" 
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90 group-hover:opacity-0 transition-opacity duration-500"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full transition-all duration-500 group-hover:translate-y-4 group-hover:opacity-0">
+                    <p class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">Big Data & Geospatial</p>
+                    <h3 class="text-3xl font-heading font-bold text-white">VN Exam Analysis (2022-25)</h3>
+                </div>
+                <div class="absolute bottom-0 left-0 w-full bg-slate-900/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-white/10 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] flex flex-col min-h-[80%]">
+                    <div class="mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">VN Exam Analysis</h3>
+                            <div class="flex gap-2 text-xs mt-2">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-blue-400 border border-blue-500/30">Python</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-emerald-400 border border-emerald-500/30">Geopandas</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-purple-400 border border-purple-500/30">Crawling</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-400 text-right">
+                            <p>Aug 2025</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-question-circle mr-1"></i> Problem</p>
+                            <p class="text-slate-200 text-xs leading-snug">Hard to evaluate difficulty & predict scores from scattered data (>4M records).</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-bullseye mr-1"></i> Target</p>
+                            <p class="text-slate-200 text-xs leading-snug">Admission Councils, Students & Parents.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm flex-grow">
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">✔ Solution (What I did)</p>
+                            <ul class="text-slate-300 space-y-1 list-disc list-inside marker:text-emerald-500 text-xs sm:text-sm">
+                                <li>Crawled & aggregated <span class="font-semibold text-white">4M+ records</span> (2022–2025).</li>
+                                <li>Conducted EDA & Regional Clustering (North-Central-South).</li>
+                                <li>Created Choropleth Maps via <span class="font-semibold text-white">Geopandas</span>.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">🚀 Impact</p>
+                            <p class="text-white font-medium text-xs sm:text-sm">
+                                Identified <span class="text-emerald-400 font-bold">Math score drop (6.4→4.8)</span> & accurately predicted A00 admission range (25.5–27.0).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="https://github.com/ldgk2712/VietNam-HighSchool-Exam-Analysis-2025" target="_blank" class="inline-flex items-center gap-2 text-white font-semibold hover:text-emerald-400 transition-colors group/btn text-sm">
+                            View Full Analysis <i class="fas fa-arrow-right transform group-hover/btn:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION (UPDATED) -->
+    <section id="achievements" class="py-20 bg-white dark:bg-dark-card/50 border-y border-slate-100 dark:border-slate-800/50 relative overflow-hidden">
+        <!-- Ambient Background for Neon feel -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-heading font-bold mb-4 text-slate-900 dark:text-white">Achievements</h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">A showcase of my certifications, scholarships, and competition awards that reflect my commitment to excellence in data analytics.</p>
+            </div>
+
+            <!-- Achievement Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1: SCUDEM Award (Top Tier) -->
+                <div class="group relative bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:shadow-xl transition-all reveal overflow-hidden">
+                    <!-- Gradient Glow on Hover -->
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                    
+                    <div class="relative">
+                        <div class="absolute top-0 right-0 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-xs font-bold px-3 py-1 rounded-full border border-yellow-200 dark:border-yellow-700">Meritorious Award</div>
+                        <div class="mb-4 mt-2">
+                            <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/20 rounded-lg flex items-center justify-center text-yellow-600 dark:text-yellow-400 text-xl font-bold mb-4">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 leading-tight text-slate-900 dark:text-white">SCUDEM IX 2024</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4 h-20">
+                                Developed and validated a spear penetration depth model (Newton’s Law) with ±5% accuracy, 100+ simulations, and ranked top in SCUDEM 2024 Problem C.
+                            </p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1GiQAhlLimq-IPVFIZMAeN457P4PByvn6/view?usp=sharing" target="_blank" class="inline-flex items-center text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 text-sm font-semibold transition-colors">
+                            View Award <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Scholarship (Top Tier) -->
+                <div class="group relative bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:shadow-xl transition-all reveal delay-100">
+                    <!-- Gradient Glow on Hover -->
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-400 to-green-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+
+                    <div class="relative">
+                        <div class="mb-4 mt-2">
+                            <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl font-bold mb-4">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 text-slate-900 dark:text-white">Academic Scholarships</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center bg-white dark:bg-slate-800 p-2 rounded border border-slate-200 dark:border-slate-700">
+                                    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Excellent Student</span>
+                                    <span class="text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded font-bold">Sem 1, 23-24</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white dark:bg-slate-800 p-2 rounded border border-slate-200 dark:border-slate-700">
+                                    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Good Student</span>
+                                    <span class="text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded font-bold">Sem 2, 22-23</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: PowerBI Cert -->
+                <div class="group relative bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:shadow-xl transition-all reveal delay-200">
+                    <div class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/20 rounded-lg flex items-center justify-center text-yellow-600 dark:text-yellow-400 mb-4">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="text-base font-bold mb-2 text-slate-900 dark:text-white">Master Analytical Thinking & PowerBI</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4 h-16">
+                        Equipped with both technical skills and an analytical mindset to solve real-world business challenges using data.
+                    </p>
+                    <a href="https://drive.google.com/file/d/1pXrx8uCqGJSXDvnxICpPaEYgORXAuka8/view?usp=sharing" target="_blank" class="inline-flex items-center text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 text-xs font-semibold transition-colors border border-slate-300 dark:border-slate-600 px-3 py-1.5 rounded-full hover:border-emerald-500">
+                        View Certificate
+                    </a>
+                </div>
+
+                <!-- Card 4: SQL Cert -->
+                <div class="group relative bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:shadow-xl transition-all reveal">
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="text-base font-bold mb-2 text-slate-900 dark:text-white">HackerRank Advanced SQL</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4 h-16">
+                        Certified proficiency in advanced SQL querying and data manipulation strategies.
+                    </p>
+                    <a href="https://www.hackerrank.com/certificates/a08e1702557d" target="_blank" class="inline-flex items-center text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 text-xs font-semibold transition-colors border border-slate-300 dark:border-slate-600 px-3 py-1.5 rounded-full hover:border-emerald-500">
+                        View Certificate
+                    </a>
+                </div>
+
+                <!-- Card 5: Data Analytics 101 -->
+                <div class="group relative bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:shadow-xl transition-all reveal delay-100">
+                    <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3 class="text-base font-bold mb-2 text-slate-900 dark:text-white">Data Analytics 101</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4">
+                        Recognized for foundational knowledge and practical experience specifically in data analysis workflows.
+                    </p>
+                </div>
+
+                <!-- Card 6: Python Cert -->
+                <div class="group relative bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl hover:shadow-xl transition-all reveal delay-200">
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="text-base font-bold mb-2 text-slate-900 dark:text-white">Python for Data Analytics</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4">
+                        Skilled in Python fundamentals, data manipulation (pandas, numpy, seaborn), and applying problem-solving.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 max-w-4xl mx-auto px-4">
+        <div class="text-center mb-12 reveal">
+            <h2 class="text-4xl font-heading font-bold mb-4">Let's Make an <span class="text-gradient">Impact</span></h2>
+            <p class="text-slate-500 dark:text-slate-400">
+                I am disciplined, driven, and ready to contribute. Available for Internships.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-dark-card rounded-3xl shadow-2xl p-8 md:p-12 border border-slate-100 dark:border-slate-700 reveal">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Contact Details</h3>
+                        
+                        <!-- Email -->
+                        <a href="mailto:ldgk2712@gmail.com" class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors group">
+                            <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span class="font-medium">ldgk2712@gmail.com</span>
+                        </a>
+
+                        <!-- Phone -->
+                        <a href="tel:+84376200780" class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors group mt-4">
+                            <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <span class="font-medium">+84 376 200 780</span>
+                        </a>
+
+                        <!-- Location -->
+                        <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 mt-4 group">
+                            <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center text-emerald-600">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span class="font-medium">Ho Chi Minh City, Vietnam</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Connect</h3>
+                        <div class="flex gap-4">
+                            <a href="https://www.linkedin.com/in/ledanggiakhanh" target="_blank" class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-linkedin-in text-xl"></i></a>
+                            <a href="https://github.com/ldgk2712" target="_blank" class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 hover:bg-slate-900 hover:text-white transition-all transform hover:-translate-y-1"><i class="fab fa-github text-xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <form onsubmit="event.preventDefault();" class="space-y-4">
+                    <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all">
+                    <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all">
+                    <textarea rows="3" placeholder="Message" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all"></textarea>
+                    <button class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold shadow-lg transform hover:-translate-y-1 transition-all">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center">
+        <p class="text-slate-500 text-sm">
+            &copy; 2025 Le Dang Gia Khanh.
+        </p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // 1. Dark Mode Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const icon = document.getElementById('theme-icon');
+
+        // Check Preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            if(html.classList.contains('dark')){
+                localStorage.theme = 'dark';
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.theme = 'light';
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // 2. Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // 3. Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
