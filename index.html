@@ -15,6 +15,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Le Dang Gia Khanh - Data Analyst & AI Researcher. Specializing in Python, SQL, and Machine Learning.">
     <meta name="author" content="Le Dang Gia Khanh">
+    <meta property="og:title" content="Le Dang Gia Khanh | Data Analyst Portfolio">
+    <meta property="og:description" content="Data Science student specializing in Python, SQL, and Business Intelligence. Available for internships.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ldgk2712.github.io/antigravity">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://ldgk2712.github.io/antigravity">
+    <meta name="theme-color" content="#059669" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
     <title>Le Dang Gia Khanh | Portfolio</title>
 
     <!-- Tailwind CSS -->
@@ -31,7 +39,7 @@
     <!-- Config -->
     <script>
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: ['selector', '[data-theme="dark"]'],
             theme: {
                 extend: {
                     fontFamily: {
@@ -77,7 +85,7 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb { background: #475569; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
         /* Utilities */
@@ -86,7 +94,7 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(229, 231, 235, 0.5);
         }
-        .dark .glass-nav {
+        [data-theme="dark"] .glass-nav {
             background: rgba(15, 23, 42, 0.8);
             border-bottom: 1px solid rgba(30, 41, 59, 0.5);
         }
@@ -102,23 +110,43 @@
             background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
             background-size: 30px 30px;
         }
-        .dark .bg-grid-pattern {
+        [data-theme="dark"] .bg-grid-pattern {
             background-image: radial-gradient(#334155 1px, transparent 1px);
         }
 
         /* Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        .reveal { opacity: 0; transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; }
+
+        /* Animations */
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none; }
+            .animate-blob { animation: none; }
+            * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+
+        #scroll-progress {
+            background: linear-gradient(90deg, #059669 0%, #34d399 100%);
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #scroll-progress { transition: none; display: none; }
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-dark-bg dark:text-slate-200 font-sans transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+
+    <div id="scroll-progress" 
+         role="progressbar" 
+         aria-label="Page scroll progress"
+         aria-valuenow="0" 
+         aria-valuemin="0" 
+         aria-valuemax="100"
+         class="fixed top-0 left-0 h-[3px] w-0 z-[9999] bg-emerald-500 transition-none pointer-events-none">
+    </div>
 
     <!-- BACKGROUND ACCENTS -->
     <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -132,26 +160,26 @@
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="#" class="font-heading font-bold text-2xl tracking-tight flex items-center gap-2">
+                <a href="#" class="font-heading font-bold text-2xl tracking-tight flex items-center gap-2" aria-label="GiaKhanh.AI — Home">
                     <span class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white text-sm">GK</span>
                     <span class="text-slate-900 dark:text-white">GiaKhanh<span class="text-emerald-500">.AI</span></span>
                 </a>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Home</a>
-                    <a href="#skills" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Skills</a>
-                    <a href="#projects" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Projects</a>
-                    <a href="#achievements" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Awards</a>
-                    <a href="#contact" class="px-5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-all shadow-lg shadow-emerald-500/30">Hire Me</a>
+                    <a href="#home" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-nav-link aria-current="page">Home</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-nav-link>Skills</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-nav-link>Projects</a>
+                    <a href="#achievements" class="text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-nav-link>Awards</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-all shadow-lg shadow-emerald-500/30" data-nav-link>Hire Me</a>
                     
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Switch to dark mode">
                         <i class="fas fa-moon text-slate-600 dark:text-emerald-400" id="theme-icon"></i>
                     </button>
                 </div>
 
                 <!-- Mobile Toggle -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 dark:text-slate-300">
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 dark:text-slate-300" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -160,11 +188,11 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-card border-t border-slate-100 dark:border-slate-800">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="#home" class="block py-2 text-base font-medium hover:text-emerald-500">Home</a>
-                <a href="#skills" class="block py-2 text-base font-medium hover:text-emerald-500">Skills</a>
-                <a href="#projects" class="block py-2 text-base font-medium hover:text-emerald-500">Projects</a>
-                <a href="#achievements" class="block py-2 text-base font-medium hover:text-emerald-500">Awards</a>
-                <a href="#contact" class="block py-2 text-base font-medium text-emerald-600 font-bold">Hire Me</a>
+                <a href="#home" class="block py-2 text-base font-medium hover:text-emerald-500" data-nav-link aria-current="page">Home</a>
+                <a href="#skills" class="block py-2 text-base font-medium hover:text-emerald-500" data-nav-link>Skills</a>
+                <a href="#projects" class="block py-2 text-base font-medium hover:text-emerald-500" data-nav-link>Projects</a>
+                <a href="#achievements" class="block py-2 text-base font-medium hover:text-emerald-500" data-nav-link>Awards</a>
+                <a href="#contact" class="block py-2 text-base font-medium text-emerald-600 font-bold" data-nav-link>Hire Me</a>
             </div>
         </div>
     </nav>
@@ -174,9 +202,9 @@
         <div class="flex flex-col-reverse lg:flex-row items-center gap-12">
             <!-- Text Content -->
             <div class="lg:w-1/2 text-center lg:text-left reveal active">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-6 border border-emerald-200 dark:border-emerald-800">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-xs font-semibold mb-6">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Open for Internship
+                    Available for Internships — 2026
                 </div>
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-3 leading-tight text-slate-900 dark:text-white">
@@ -186,17 +214,33 @@
                     Aspiring <span class="text-emerald-600 dark:text-emerald-400 font-bold">Data Analyst Intern</span>
                 </h2>
                 
-                <p class="text-slate-600 dark:text-slate-400 mb-8 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-                    I’m a Data Science student passionate about turning data into actionable insights. With solid skills in data analysis and visualization, I’m eager to apply my knowledge to real business problems and grow as a Data Analyst in a collaborative, data-driven environment. I believe that clear data storytelling bridges the gap between information and impact.
+                <p class="text-xl text-slate-500 dark:text-slate-400 italic mb-6">
+                    I am a final-year student pursuing a degree in Mathematics & Computer Science, with aspirations of becoming a Data Analyst in the future. My profound enthusiasm for mathematics, data analysis, and machine learning has driven me to pursue my Bachelor's degree in Mathematics & Computer Science at VNUHCM - University of Science.
                 </p>
+
+                <div class="flex gap-8 justify-center lg:justify-start mb-8">
+                    <div class="text-center lg:text-left">
+                        <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">4+</p>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Projects</p>
+                    </div>
+                    <div class="w-px bg-slate-200 dark:bg-slate-700"></div>
+                    <div class="text-center lg:text-left">
+                        <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">3</p>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Certifications</p>
+                    </div>
+                    <div class="w-px bg-slate-200 dark:bg-slate-700"></div>
+                    <div class="text-center lg:text-left">
+                        <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">Top 5%</p>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Of Faculty</p>
+                    </div>
+                </div>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <a href="#projects" class="px-8 py-3.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:bg-emerald-600 dark:hover:bg-emerald-400 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl">
-                        View My Work
+                        See My Work
                     </a>
-                    <a href="https://github.com/ldgk2712" target="_blank" class="px-8 py-3.5 rounded-full border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 font-semibold transition-all flex items-center justify-center gap-2 group">
-                        <i class="fab fa-github text-xl group-hover:text-emerald-500"></i>
-                        <span>GitHub</span>
+                    <a href="#contact" class="px-8 py-3.5 rounded-full border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 font-semibold transition-all flex items-center justify-center gap-2 group">
+                        Let's Connect
                     </a>
                 </div>
             </div>
@@ -328,6 +372,64 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             
+            <!-- Project 0: Marketing Campaign Analysis -->
+            <div class="group relative h-[500px] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1115&q=80" 
+                     alt="Marketing Campaign Analysis" 
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90 group-hover:opacity-0 transition-opacity duration-500"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full transition-all duration-500 group-hover:translate-y-4 group-hover:opacity-0">
+                    <p class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">Marketing Analytics</p>
+                    <h3 class="text-3xl font-heading font-bold text-white">Campaign Performance</h3>
+                </div>
+                <div class="absolute bottom-0 left-0 w-full bg-slate-900/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-white/10 p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] flex flex-col min-h-[80%]">
+                    <div class="mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Marketing Profitability</h3>
+                            <div class="flex gap-2 text-xs mt-2">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-yellow-400 border border-yellow-500/30">Power BI</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-emerald-400 border border-emerald-500/30">Excel</span>
+                                <span class="px-2 py-1 rounded bg-slate-800 text-orange-400 border border-orange-500/30">Data Viz</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-400 text-right">
+                            <p>Apr 2026</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-question-circle mr-1"></i> Problem</p>
+                            <p class="text-slate-200 text-xs leading-snug">Inefficient ad spend with 87.5% budget in unprofitable promo types.</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase mb-1 tracking-wider"><i class="fas fa-bullseye mr-1"></i> Target</p>
+                            <p class="text-slate-200 text-xs leading-snug">Fashion Retailer Marketing Team.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm flex-grow">
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">✔ Solution (What I did)</p>
+                            <ul class="text-slate-300 space-y-1 list-disc list-inside marker:text-emerald-500 text-xs sm:text-sm">
+                                <li>Analyzed 228 campaigns and $710K ad spend over 5 months.</li>
+                                <li>Built a 9-KPI <span class="font-semibold text-white">Power BI dashboard</span> for ongoing monitoring.</li>
+                                <li>Tested CTR, CR, and P&L correlations via scatter plot analysis.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-emerald-500 font-bold text-xs uppercase mb-1">🚀 Impact</p>
+                            <p class="text-white font-medium text-xs sm:text-sm">
+                                Recommended capping unprofitable promos at 60% and enforcing a <span class="text-emerald-400 font-bold">P&L stop-loss rule</span> to optimize budget.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="https://drive.google.com/file/d/1MiwFV8tBP-looeBC5rINd6ptX44fmxN2/view?usp=sharing" target="_blank" class="inline-flex items-center gap-2 text-white font-semibold hover:text-emerald-400 transition-colors group/btn text-sm">
+                            View Report <i class="fas fa-arrow-right transform group-hover/btn:translate-x-1 transition-transform ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Project 1 -->
             <div class="group relative h-[500px] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" 
@@ -732,10 +834,19 @@
 
                 <!-- Form -->
                 <form onsubmit="event.preventDefault();" class="space-y-4">
-                    <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all">
-                    <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all">
-                    <textarea rows="3" placeholder="Message" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all"></textarea>
-                    <button class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold shadow-lg transform hover:-translate-y-1 transition-all">
+                    <div>
+                        <label for="name" class="sr-only">Your Name</label>
+                        <input id="name" type="text" placeholder="Your Name" required autocomplete="name" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Your Email</label>
+                        <input id="email" type="email" placeholder="Your Email" required autocomplete="email" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="message" class="sr-only">Message</label>
+                        <textarea id="message" rows="3" placeholder="Message" required autocomplete="off" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold shadow-lg transform hover:-translate-y-1 transition-all">
                         Send Message <i class="fas fa-paper-plane ml-2"></i>
                     </button>
                 </form>
@@ -743,9 +854,10 @@
         </div>
     </section>
 
-    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center">
+    <footer role="contentinfo" class="border-t border-slate-200 dark:border-slate-800 py-8 text-center">
+        <a href="#home" class="text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline inline-block mb-4 transition-colors" aria-label="Back to top">↑ Back to top</a>
         <p class="text-slate-500 text-sm">
-            &copy; 2025 Le Dang Gia Khanh.
+            &copy; 2025–2026 Le Dang Gia Khanh.
         </p>
     </footer>
 
@@ -757,19 +869,22 @@
         const icon = document.getElementById('theme-icon');
 
         // Check Preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.setAttribute('data-theme', 'dark');
             icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            html.setAttribute('data-theme', 'light');
+            icon.classList.replace('fa-sun', 'fa-moon');
         }
 
         themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            if(html.classList.contains('dark')){
-                localStorage.theme = 'dark';
-                icon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                localStorage.theme = 'light';
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                html.setAttribute('data-theme', 'light');
                 icon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
             }
         });
 
@@ -777,6 +892,10 @@
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => menu.classList.add('hidden'));
+        });
 
         // 3. Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
@@ -788,6 +907,16 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 4. Scroll Progress Bar
+        const scrollBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollBar.style.width = progress + '%';
+            scrollBar.setAttribute('aria-valuenow', Math.round(progress));
+        }, { passive: true });
     </script>
 </body>
 </html>
